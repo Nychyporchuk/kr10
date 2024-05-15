@@ -1,6 +1,6 @@
 let gulp = require('gulp');
 let less = require('gulp-less');
-let autoprefixer = require('gulp-autoprefixer');
+
 let concat = require('gulp-concat');
 let sourcemaps = require('gulp-sourcemaps');
 let cleanCss = require('gulp-clean-css');
@@ -22,9 +22,7 @@ gulp.task('less', function() {
         .pipe(sourcemaps.init())
         .pipe(less())
         .pipe(concat(config.output.cssName))
-        .pipe(autoprefixer({
-            cascade: false
-        }))
+
         .pipe(cleanCss())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(config.output.path))
@@ -34,7 +32,7 @@ gulp.task('less', function() {
 gulp.task('serve', function() {
     browserSync.init({
         server: {
-            baseDir: config.output.path
+            baseDir: './'
         }
     });
 
